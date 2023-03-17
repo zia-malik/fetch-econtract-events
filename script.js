@@ -18,8 +18,10 @@ testingContract.on("Transfer", async (from, to, value, event) => {
     try {
         let block = await provider.getBlockNumber()
         console.log(block);
-        let events = await contract.queryFilter("Transfer", block - 1000000, block)
-        console.log(events);
+        let events = await contract.queryFilter("Transfer", 16823483, 16823485)
+        console.log("From: ",events[0].args[0]);
+        console.log("To: ",events[0].args[1]);
+        console.log("Token ID: ",events[0].args[2].toString());
     } catch (error) {
         console.log(error);
     }
